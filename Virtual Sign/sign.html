@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+
+
+<!-- you load jquery somewhere above here ... -->
+	<!--[if lt IE 9]>
+	<script type="text/javascript" src="libs/flashcanvas.js"></script>
+	<![endif]-->
+	<script src="jSignature/jSignature.min.js"></script>
+
+	<button onclick="reset()">Reset</button>
+	<button onclick="selectit()">Select It</button>
+	<div id="signature"></div>
+	<div id="selectedimage"></div>
+	<script>
+	    $(document).ready(function() {
+	        $("#signature").jSignature();
+	    })
+	    function reset(){
+	    	var $sigdiv = $("#signature");
+	    	//$sigdiv.jSignature();
+	    	$sigdiv.jSignature("reset");
+	    }
+	    function selectit(){
+	    	var $sigdiv = $("#signature");
+	    	//$sigdiv.jSignature();
+	    	var datapair = $sigdiv.jSignature("getData", "svgbase64");
+			var i = new Image()
+			i.src = "data:" + datapair[0] + "," + datapair[1]
+			$(i).appendTo($("#selectedimage"))
+	    }
+	</script>
+</body>
+</html>
